@@ -1,0 +1,112 @@
+﻿type Mutation {
+  createUmiiMessageType(input: CreateUmiiMessageTypeInput!): UmiiMessageType
+  deleteUmiiMessageType(input: DeleteUmiiMessageTypeInput!): UmiiMessageType
+  updateUmiiMessageType(input: UpdateUmiiMessageTypeInput!): UmiiMessageType
+}
+
+type Query {
+  getUmiiMessageType(id: ID!, message: String!): UmiiMessageType
+  listUmiiMessageTypes(filter: TableUmiiMessageTypeFilterInput, limit: Int, nextToken: String): UmiiMessageTypeConnection
+}
+
+type Subscription {
+  onCreateUmiiMessageType(addedon: String, id: ID, message: String, senderid: String): UmiiMessageType
+    @aws_subscribe(mutations:["createUmiiMessageType"])
+  onDeleteUmiiMessageType(addedon: String, id: ID, message: String, senderid: String): UmiiMessageType
+    @aws_subscribe(mutations:["deleteUmiiMessageType"])
+  onUpdateUmiiMessageType(addedon: String, id: ID, message: String, senderid: String): UmiiMessageType
+    @aws_subscribe(mutations:["updateUmiiMessageType"])
+}
+
+type UmiiMessageType {
+  addedon: String
+  id: ID!
+  message: String
+  senderid: String
+}
+
+type UmiiMessageTypeConnection {
+  items: [UmiiMessageType]
+  nextToken: String
+}
+
+input CreateUmiiMessageTypeInput {
+  addedon: String
+  id: ID!
+  message: String!
+  senderid: String
+}
+
+input DeleteUmiiMessageTypeInput {
+  id: ID!
+  message: String!
+}
+
+input TableBooleanFilterInput {
+  eq: Boolean
+  ne: Boolean
+}
+
+input TableFloatFilterInput {
+  between: [Float]
+  contains: Float
+  eq: Float
+  ge: Float
+  gt: Float
+  le: Float
+  lt: Float
+  ne: Float
+  notContains: Float
+}
+
+input TableIDFilterInput {
+  beginsWith: ID
+  between: [ID]
+  contains: ID
+  eq: ID
+  ge: ID
+  gt: ID
+  le: ID
+  lt: ID
+  ne: ID
+  notContains: ID
+}
+
+input TableIntFilterInput {
+  between: [Int]
+  contains: Int
+  eq: Int
+  ge: Int
+  gt: Int
+  le: Int
+  lt: Int
+  ne: Int
+  notContains: Int
+}
+
+input TableStringFilterInput {
+  beginsWith: String
+  between: [String]
+  contains: String
+  eq: String
+  ge: String
+  gt: String
+  le: String
+  lt: String
+  ne: String
+  notContains: String
+}
+
+input TableUmiiMessageTypeFilterInput {
+  addedon: TableStringFilterInput
+  id: TableIDFilterInput
+  message: TableStringFilterInput
+  senderid: TableStringFilterInput
+}
+
+input UpdateUmiiMessageTypeInput {
+  addedon: String
+  id: ID!
+  message: String!
+  senderid: String
+}
